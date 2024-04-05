@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Project</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <% if (locals.user) { %>
+            <li class="nav-item">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= user.fullName.split(" ")[0] %>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/user/signout">Sign Out</a></li>
+                </ul>
+              </li>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/signup">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/signin">Sign In</a>
+            </li>
+          <% } %>
+          <li class="nav-item">
+            <% if (locals.user && user.role==="admin") { %>
+              <a class="nav-link active" aria-current="page" href="/user/admin">Admin Page</a>
+              <% } else { %>
+                <a class="nav-link active" onclick="myfunc()" aria-current="page" >Admin Page</a>
+              <% } %>
+             
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    function myfunc(){
+      alert("Sorry, Only Admin are Authorised to Access this.")
+    }
+  </script>
